@@ -1,2 +1,3 @@
 # tradcoop-native
- react native based cooperatives marketplace application
+
+React Native based cooperatives marketplace application.
