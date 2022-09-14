@@ -6,6 +6,8 @@ import SecondOnBoarding from "./screens/SecondOnBoarding";
 import ThirdOnBoarding from "./screens/ThirdOnBoarding";
 import SignUpScreen from "./screens/SignUpScreen";
 import SignInScreen from "./screens/SignInScreen";
+import PhoneNumberScreen from "./screens/PhoneNumberScreen";
+import PhoneVerificationScreen from "./screens/PhoneVerificationScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -36,6 +38,16 @@ export default function App() {
         <Stack.Screen
           name="SignIn"
           component={SignInScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PhoneNumber"
+          component={PhoneNumberScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PhoneVerification"
+          component={PhoneVerificationScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
