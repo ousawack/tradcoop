@@ -1,7 +1,11 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./screens/HomeScreen";
+import FirstOnBoarding from "./screens/FirstOnBoarding";
+import SecondOnBoarding from "./screens/SecondOnBoarding";
+import ThirdOnBoarding from "./screens/ThirdOnBoarding";
+import SignUpScreen from "./screens/SignUpScreen";
+import SignInScreen from "./screens/SignInScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -9,7 +13,31 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="FOB"
+          component={FirstOnBoarding}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SOB"
+          component={SecondOnBoarding}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TOB"
+          component={ThirdOnBoarding}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
