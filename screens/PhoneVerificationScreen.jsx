@@ -24,10 +24,6 @@ const PhoneVerificationScreen = () => {
     return null;
   }
 
-  setText = () => {
-    this.otpInput.setValue("1234");
-  };
-
   return (
     <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-4 px-8">
       <View className="space-y-2">
@@ -53,15 +49,13 @@ const PhoneVerificationScreen = () => {
         </Text>
       </View>
       <OTPTextView
-        defaultValue=""
-        inputCount={4}
-        tintColor=""
-        offTintColor="#4E1703"
-        inputCellLength={1}
         style={{ fontFamily: "Poppins_600SemiBold" }}
         className="flex-1 items-center justify-center m-1 p-4 rounded-full border-solid border-2 border-[#7B420E] text-xl text-center"
       />
-      <TouchableOpacity className="bg-[#4E1703] rounded-2xl px-[20] my-14 mx-10 py-4">
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Categories")}
+        className="bg-[#4E1703] rounded-2xl px-[20] my-14 mx-10 py-4"
+      >
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
           className="text-center text-white text-2xl"
