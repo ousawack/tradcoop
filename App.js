@@ -8,6 +8,7 @@ import SignUpScreen from "./screens/SignUpScreen";
 import SignInScreen from "./screens/SignInScreen";
 import PhoneNumberScreen from "./screens/PhoneNumberScreen";
 import PhoneVerificationScreen from "./screens/PhoneVerificationScreen";
+import CategoriesScreen from "./screens/CategoriesScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CoopScreen from "./screens/CoopScreen";
 import CoopListScreen from "./screens/CoopListScreen";
@@ -41,11 +42,8 @@ export default function App() {
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen
-          name="SignIn"
-          component={SignInScreen} 
-          />
-          <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
@@ -68,6 +66,11 @@ export default function App() {
         <Stack.Screen
           name="PhoneVerification"
           component={PhoneVerificationScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Categories"
+          component={CategoriesScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

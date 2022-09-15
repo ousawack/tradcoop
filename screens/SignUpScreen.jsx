@@ -98,7 +98,10 @@ const SignUpScreen = () => {
         </View>
       </View>
       <View className="place-items-end items-center mt-6">
-        <TouchableOpacity className="bg-[#4E1703] rounded-2xl px-[109] py-4">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("PhoneNumber")}
+          className="bg-[#4E1703] rounded-2xl px-[109] py-4"
+        >
           <Text
             style={{ fontFamily: "Poppins_700Bold" }}
             className="text-center text-white text-2xl"
