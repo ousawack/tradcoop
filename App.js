@@ -6,6 +6,8 @@ import SecondOnBoarding from "./screens/SecondOnBoarding";
 import ThirdOnBoarding from "./screens/ThirdOnBoarding";
 import SignUpScreen from "./screens/SignUpScreen";
 import SignInScreen from "./screens/SignInScreen";
+import PhoneNumberScreen from "./screens/PhoneNumberScreen";
+import PhoneVerificationScreen from "./screens/PhoneVerificationScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CoopScreen from "./screens/CoopScreen";
 import CoopListScreen from "./screens/CoopListScreen";
@@ -53,6 +55,16 @@ export default function App() {
         <Stack.Screen
           name="CoopList"
           component={CoopListScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PhoneNumber"
+          component={PhoneNumberScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PhoneVerification"
+          component={PhoneVerificationScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
