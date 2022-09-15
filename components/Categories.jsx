@@ -2,11 +2,13 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import CategoryCard from "./CategoryCard";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
+import { useNavigation } from "@react-navigation/native";
 
 const Categories = ({ title }) => {
+  const navigation = useNavigation();
   return (
     <View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
         <View className="mt-3 flex-row items-center justify-between px-3">
           <Text className="font-bold text-lg text-[#4E1703]">{title}</Text>
           <ArrowRightIcon color="#C3700D" />
