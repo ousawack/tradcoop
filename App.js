@@ -12,6 +12,9 @@ import HomeScreen from "./screens/HomeScreen";
 import CoopScreen from "./screens/CoopScreen";
 import CoopListScreen from "./screens/CoopListScreen";
 
+import HomeScreen from "./screens/HomeScreen";
+import CoopScreen from "./screens/CoopScreen";
+import CoopListScreen from "./screens/CoopListScreen";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
