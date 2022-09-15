@@ -91,7 +91,10 @@ const SignInScreen = () => {
         </View>
       </View>
       <View className="place-items-end items-center mt-6">
-        <TouchableOpacity className="bg-[#4E1703] rounded-2xl px-[113] py-4">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Home")}
+          className="bg-[#4E1703] rounded-2xl px-[113] py-4"
+        >
           <Text
             style={{ fontFamily: "Poppins_700Bold" }}
             className="text-center text-white text-2xl"

@@ -53,7 +53,7 @@ const PhoneVerificationScreen = () => {
         className="flex-1 items-center justify-center m-1 p-4 rounded-full border-solid border-2 border-[#7B420E] text-xl text-center"
       />
       <TouchableOpacity
-        onPress={() => navigation.navigate("Categories")}
+        onPress={() => navigation.navigate("Home")}
         className="bg-[#4E1703] rounded-2xl px-[20] my-14 mx-10 py-4"
       >
         <Text
