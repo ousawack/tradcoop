@@ -49,7 +49,7 @@ const HomeScreen = () => {
           <Image
             source={HomeScreenBanner}
             // className="h-[230] w-[460] relative"
-            className="h-48 w-full opacity-50 relative"
+            className="h-44 w-full opacity-25 relative"
           />
           <View className="absolute px-5 py-3">
             <Text
