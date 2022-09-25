@@ -1,12 +1,21 @@
-import { View, Text, ScrollView, SafeAreaView, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   AdjustmentsVerticalIcon,
   MagnifyingGlassIcon,
+  UserCircleIcon,
 } from "react-native-heroicons/outline";
 import CoopListCard from "../components/CoopListCard";
 const CoopListScreen = () => {
+  const navigation = useNavigation();
   const {
     params: { id, imgUrl, title, rating, address, short_description },
   } = useRoute();
@@ -15,35 +24,37 @@ const CoopListScreen = () => {
       <ScrollView>
         <SafeAreaView>
           {/* Header */}
-
-          <View className="mt-4  items-center justify-between px-4">
-            <Text className="font-bold text-lg text-[#4E1703]">{title}</Text>
-          </View>
-          <View className="flex-row items-center space-x-2 pb-2 mx-4">
-            <View className="flex-row flex-1  p-3 space-x-2  bg-white border-black mt-2 rounded-lg ">
-              <MagnifyingGlassIcon color="gray" size={20} />
+          <View className="flex-row items-center space-x-2 pb-4 mx-4">
+            <View className="flex-row flex-1 p-3 pb-2 space-x-2 bg-white border border-[#7B420E] mt-2 rounded-lg ">
+              <MagnifyingGlassIcon color="#7B420E" size={20} />
               <TextInput
-                placeholder="coop list "
+                style={{ fontFamily: "Poppins_600SemiBold" }}
+                placeholder="Search for cooperatives..."
                 keyboardType="default"
-                className="flex-1"
+                className="flex-1 text-[#7B420E]"
               />
             </View>
-            <AdjustmentsVerticalIcon color="#7B420E" size={20} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("UserProfile")}
+              className="left-1 top-1"
+            >
+              <UserCircleIcon color="#7B420E" size={35} />
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
 
         <ScrollView
           contentContainerStyle={{
-            paddingHorizontal: 15,
+            paddingHorizontal: 16,
           }}
           showsHorizontalScrollIndicator={false}
-          className="pt-4 "
+          className="pt-2"
         >
           {/* Coop  Cards... */}
           <CoopListCard
             id={123}
             imgUrl="https://links.papareact.com/gn7"
-            title="Cooperative Timdokkals"
+            title="Cooperative Timdokals"
             rating={4}
             genre="Morocco"
             address="Agadir"
