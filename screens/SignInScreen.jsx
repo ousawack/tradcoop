@@ -62,11 +62,11 @@ const SignInScreen = () => {
             style={{ fontFamily: "Poppins_600SemiBold" }}
             className="text-[#4E1703]"
           >
-            Full Name
+            Email
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            placeholder="ex: John Doe"
+            placeholder="example@example.xyz"
             className="flex-1 bg-white rounded-lg p-2 "
           />
         </View>

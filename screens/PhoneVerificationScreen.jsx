@@ -63,7 +63,10 @@ const PhoneVerificationScreen = () => {
           Verify
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity className="items-center justify-center">
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        className="items-center justify-center"
+      >
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
           className="text-sm text-[#7B420E]"
