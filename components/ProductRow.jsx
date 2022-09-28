@@ -18,14 +18,34 @@ const ProductRow = ({ id, title, description }) => {
         </View>
         </TouchableOpacity>
       <Text className="text-xs text-[#7B420E] px-4">{description}</Text>
+    <View className="mx-2 my-3">
+      <TouchableOpacity>
+        <View className="flex-row items-center justify-between px-4">
+          <Text
+            style={{ fontFamily: "Poppins_700Bold" }}
+            className="text-xl text-[#4E1703]"
+          >
+            {title}
+          </Text>
+          <ArrowRightIcon color="#C3700D" />
+        </View>
+      </TouchableOpacity>
+      <Text
+        style={{ fontFamily: "Poppins_600SemiBold" }}
+        className="text-sm text-[#7B420E] px-4"
+      >
+        {description}
+      </Text>
 
       <ScrollView
         horizontal
         contentContainerStyle={{
-          paddingHorizontal: 15,
+          paddingHorizontal: 5,
+          paddingVertical: 5,
+          paddingBottom: 30,
         }}
         showsHorizontalScrollIndicator={false}
-        className="pt-4"
+        className="pt-3"
       >
         {/* Coop Product Cards... */}
         <ProductCard

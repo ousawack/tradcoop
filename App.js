@@ -9,9 +9,18 @@ import SignInScreen from "./screens/SignInScreen";
 import PhoneNumberScreen from "./screens/PhoneNumberScreen";
 import PhoneVerificationScreen from "./screens/PhoneVerificationScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
-import HomeScreen from "./screens/HomeScreen";
 import CoopScreen from "./screens/CoopScreen";
 import CoopListScreen from "./screens/CoopListScreen";
+import UserProfileScreen from "./screens/UserProfileScreen";
+import UserDetailsScreen from "./screens/UserDetailsScreen";
+import HomeScreen from "./screens/HomeScreen";
+import UserOrdersScreen from "./screens/UserOrdersScreen";
+import UserAddressBookScreen from "./screens/UserAddressBookScreen";
+import UserPaymentMethodsScreen from "./screens/UserPaymentMethodsScreen";
+import UserNotificationsScreen from "./screens/UserNotificationsScreen";
+import FAQScreen from "./screens/FAQScreen";
+import CheckoutScreen from "./screens/CheckoutScreen";
+import PaymentScreen from "./screens/PaymentScreen";
 
 import HomeScreen from "./screens/HomeScreen";
 import CoopScreen from "./screens/CoopScreen";
@@ -42,7 +51,11 @@ export default function App() {
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="SignIn" component={SignInScreen} />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -72,6 +85,51 @@ export default function App() {
           name="Categories"
           component={CategoriesScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserProfile"
+          component={UserProfileScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserDetails"
+          component={UserDetailsScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserOrders"
+          component={UserOrdersScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserAddressBook"
+          component={UserAddressBookScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserPaymentMethods"
+          component={UserPaymentMethodsScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserNotifications"
+          component={UserNotificationsScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="FAQ"
+          component={FAQScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="Checkout"
+          component={CheckoutScreen}
+          options={{ presentation: "modal", headerShown: false }}
+        />
+        <Stack.Screen
+          name="Payment"
+          component={PaymentScreen}
+          options={{ presentation: "modal", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

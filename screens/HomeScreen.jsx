@@ -5,47 +5,69 @@ import {
   Image,
   TextInput,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
-
 import {
   AdjustmentsVerticalIcon,
   MagnifyingGlassIcon,
+  UserCircleIcon,
 } from "react-native-heroicons/outline";
 import HomeScreenBanner from "../assets/HomeScreenBanner.jpg";
 import CoopRow from "../components/CoopRow";
 import Categories from "../components/Categories";
 import ProductRow from "../components/ProductRow";
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View className="bg-[#EFDEBE] pt-8 flex-1">
       <ScrollView>
         <SafeAreaView>
           {/* Header */}
-          <View className="flex-row items-center space-x-2 pb-2 mx-4">
-            <View className="flex-row flex-1  p-3 space-x-2  bg-white border-black mt-2 rounded-lg ">
-              <MagnifyingGlassIcon color="gray" size={20} />
+          <View className="flex-row items-center space-x-2 pb-4 mx-4">
+            <View className="flex-row flex-1 p-3 pb-2 space-x-2 bg-white border border-[#7B420E] mt-2 rounded-lg ">
+              <MagnifyingGlassIcon color="#7B420E" size={20} />
               <TextInput
-                placeholder="Cooperatives"
+                style={{ fontFamily: "Poppins_600SemiBold" }}
+                placeholder="Search for rugs, clothing..."
                 keyboardType="default"
-                className="flex-1"
+                className="flex-1 text-[#7B420E]"
               />
             </View>
-            <AdjustmentsVerticalIcon color="#7B420E" size={20} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("UserProfile")}
+              className="left-1 top-1"
+            >
+              <UserCircleIcon color="#7B420E" size={35} />
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
         <View>
           <Image
             source={HomeScreenBanner}
-            className="h-[230] w-[460] relative "
+            // className="h-[230] w-[460] relative"
+            className="h-44 w-full opacity-25 relative"
           />
-          <Text className="absolute text-[#EFDEBE] text-xl font-bold p-3 py-5">
-            the best and most natural products... Straight from the source
-          </Text>
+          <View className="absolute px-5 py-3">
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-3xl"
+            >
+              the best and most natural products ...
+            </Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-3xl"
+            >
+              Straight from the source !
+            </Text>
+          </View>
         </View>
         {/* Body */}
-        <View>
+        <View className="my-4 divide-y">
           {/* Catgories */}
 
           <Categories title="Categories" />

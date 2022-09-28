@@ -7,17 +7,22 @@ import { useNavigation } from "@react-navigation/native";
 const Categories = ({ title }) => {
   const navigation = useNavigation();
   return (
-    <View>
+    <View className="mx-2">
       <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-        <View className="mt-3 flex-row items-center justify-between px-3">
-          <Text className="font-bold text-lg text-[#4E1703]">{title}</Text>
+        <View className="mt-3 flex-row items-center justify-between px-4">
+          <Text
+            style={{ fontFamily: "Poppins_700Bold" }}
+            className="text-xl text-[#4E1703]"
+          >
+            {title}
+          </Text>
           <ArrowRightIcon color="#C3700D" />
         </View>
       </TouchableOpacity>
       <ScrollView
         contentContainerStyle={{
-          paddingHorizonta: 15,
-          paddingTop: 10,
+          paddingHorizontal: 5,
+          paddingVertical: 10,
         }}
         horizontal
         showsHorizontalScrollIndicator={false}
