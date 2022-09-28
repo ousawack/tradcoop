@@ -79,6 +79,7 @@ const BasketScreen = () => {
           <View className="flex-row  justify-between">
             <Text className="text-#4E1703">Subtotal</Text>
             <Text className="text-#4E1703">{basketTotal}</Text>
+           
           </View>
 
           <View className="flex-row justify-between">

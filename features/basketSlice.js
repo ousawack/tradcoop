@@ -6,6 +6,7 @@ const initialState = {
 
 export const basketSlice = createSlice({
   name: "counter",
+
   initialState,
   reducers: {
     addToBasket: (state, action) => {
