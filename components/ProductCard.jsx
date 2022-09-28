@@ -5,10 +5,23 @@ import { useNavigation } from "@react-navigation/native";
 
 /* Coop Product Card */
 
-const ProductCard = ({ imgUrl, title, rating, genre, address }) => {
+const ProductCard = ({ id,imgUrl, title, rating, price, address,description }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity className="bg-white mr-3 shadow">
+    <TouchableOpacity className="bg-white mr-3 shadow" onPress={() =>         navigation.navigate("ProductDetails", {
+      title,
+      id,
+      imgUrl,
+      title,
+      rating,
+      address,
+      description,
+      price,
+ 
+    })
+  }
+>
+
       <Image
         source={{
           uri: imgUrl,
@@ -20,7 +33,7 @@ const ProductCard = ({ imgUrl, title, rating, genre, address }) => {
         <View className="flex-row items-center space-x-1">
           <StarIcon color="#C3700D" opacity={0.5} size={22} />
           <Text className="text-[#7B420E]">
-            <Text className="text-[#C3700D]">{rating}</Text> . {genre}
+            <Text className="text-[#C3700D]">{rating}</Text> . {price}
           </Text>
         </View>
         <View className="flex-row items-center space-x-1">
