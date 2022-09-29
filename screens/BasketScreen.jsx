@@ -17,7 +17,7 @@ import {
   selectedBasketItems,
 } from "../features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/outline";
-import produit from "../assets/produit.jpg";
+import produit from "../assets/Product1.png";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
@@ -79,7 +79,6 @@ const BasketScreen = () => {
           <View className="flex-row  justify-between">
             <Text className="text-#4E1703">Subtotal</Text>
             <Text className="text-#4E1703">{basketTotal}</Text>
-           
           </View>
 
           <View className="flex-row justify-between">
