@@ -9,7 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import produit from "../assets/produit.jpg";
+import produit from "../assets/Product1.png";
 import HomeScreenBanner from "../assets/HomeScreenBanner.jpg";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
@@ -44,9 +44,9 @@ const ProductDetailsScreen = () => {
 
   return (
     <>
-      <BasketIcon></BasketIcon>
+      <BasketIcon />
 
-      <View className="bg-[#EFDEBE] pt-8 flex-1">
+      <View className="bg-[#EFDEBE] flex-1">
         <ScrollView>
           {/* Header */}
           <View>
@@ -57,14 +57,11 @@ const ProductDetailsScreen = () => {
               decelerationRate="fast"
               pagingEnabled
             >
-              <Image source={produit} className="h-[330] w-[390] relative " />
+              <Image source={produit} className="h-[330] w-screen" />
 
-              <Image
-                source={HomeScreenBanner}
-                className="h-[330] w-[390] relative "
-              />
+              <Image source={HomeScreenBanner} className="h-[330] w-screen" />
 
-              <Image source={produit} className="h-[330] w-[390] relative " />
+              <Image source={produit} className="h-[330] w-screen" />
             </ScrollView>
           </View>
           <View className="mt-7">
@@ -109,7 +106,7 @@ const ProductDetailsScreen = () => {
             </Text>
           </View>
           <View
-            className="mt-5"
+            className="mt-5 pb-24"
             style={[{ flexDirection: "row", alignItems: "center" }]}
           >
             <View style={[{ flex: 1, flexDirection: "row" }]}>
@@ -120,7 +117,7 @@ const ProductDetailsScreen = () => {
             <View
               style={[{ justifyContent: "space-evenly", marginVertical: 10 }]}
             >
-              <View className="flex-row items-center space-x-2 ">
+              <View className="flex-row items-center space-x-2">
                 <TouchableOpacity>
                   <MinusCircleIcon
                     disabled={!items.length}
