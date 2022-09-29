@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import {
@@ -13,17 +14,23 @@ import {
   MagnifyingGlassIcon,
 } from "react-native-heroicons/outline";
 import { TouchableOpacity } from "react-native";
-import ProductCard from "../components/ProductCard";
+import ProductListCard from "../components/ProductListCard";
 const width = Dimensions.get("window").width / 2 - 30;
 
 const ProductListScreen = () => {
   const [catergoryIndex, setCategoryIndex] = React.useState(0);
 
-  const categories = ["POTERY", "ORGANIC", "DECORATION", "SYNTHETIC"];
+  const categories = ["ALL", "POTTERY", "ORGANIC", "DECORATION", "SYNTHETIC"];
 
   const CategoryListCard = () => {
     return (
-      <View style={style.categoryContainer}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        className="flex-row mb-7 space-x-6 mx-4 content-between"
+        // contentContainerStyle={{ justifyContent: "space-between" }}
+        style={style.categoryContainer}
+      >
         {categories.map((item, index) => (
           <TouchableOpacity
             key={index}
@@ -40,74 +47,15 @@ const ProductListScreen = () => {
             </Text>
           </TouchableOpacity>
         ))}
-      </View>
-    );
-  };
-  const Card = ({ ProductCard }) => {
-    return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate("Details", ProductCard)}
-      >
-        <View>
-          <View style={{ alignItems: "flex-end" }}>
-            <View
-              style={{
-                width: 30,
-                height: 30,
-                borderRadius: 20,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            ></View>
-          </View>
-
-          <View
-            style={{
-              height: 100,
-              alignItems: "center",
-            }}
-          ></View>
-
-          <Text style={{ fontWeight: "bold", fontSize: 17, marginTop: 10 }}>
-            {ProductCard.title}
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginTop: 5,
-            }}
-          >
-            <Text style={{ fontSize: 19, fontWeight: "bold" }}>
-              ${ProductCard.price}
-            </Text>
-            <View
-              style={{
-                height: 25,
-                width: 25,
-                borderRadius: 5,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ fontSize: 22, fontWeight: "bold" }}>+</Text>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
+      </ScrollView>
     );
   };
   return (
-    <View className="bg-[#EFDEBE] pt-8  flex-1">
+    <View className="bg-[#EFDEBE] pt-8 flex-1">
       <SafeAreaView>
         {/* Header */}
-
-        <View className="mt-4  items-center justify-between px-4">
-          <Text className="font-bold text-lg text-[#4E1703]">Product list</Text>
-        </View>
-        <View className="flex-row items-center space-x-2 pb-0 mx-4">
-          <View className="flex-row flex-1  p-3 space-x-2  bg-white border-black mt-2 rounded-lg ">
+        <View className="flex-row items-center space-x-2 mx-4">
+          <View className="flex-row flex-1 p-3 my-6 space-x-2  bg-white border-black mt-2 rounded-lg ">
             <MagnifyingGlassIcon color="gray" size={20} />
             <TextInput
               placeholder="coop list "
@@ -115,33 +63,62 @@ const ProductListScreen = () => {
               className="flex-1"
             />
           </View>
-          <AdjustmentsVerticalIcon color="#7B420E" size={20} />
         </View>
-        <FlatList
-          columnWrapperStyle={{ justifyContent: "space-between" }}
+        <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             marginTop: 10,
-            paddingBottom: 50,
+            paddingBottom: 20,
           }}
-          numColumns={2}
-          data={ProductCard}
-          renderItem={({ item }) => {
-            return <Card ProductCard={item} />;
-          }}
-        />
-        <CategoryListCard />
+        >
+          <CategoryListCard />
+          <View className="flex flex-row flex-wrap">
+            <ProductListCard
+              id={1234}
+              imgUrl="https://links.papareact.com/gn7"
+              title="Product name 1"
+              rating={4.5}
+              price="13 $"
+              address="Agadir"
+              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
+              long={20}
+              lat={0}
+            />
+            <ProductListCard
+              id={1235}
+              imgUrl="https://links.papareact.com/gn7"
+              title="Product name 2"
+              rating={4.5}
+              price="12 $"
+              address="Agadir"
+              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care.Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
+              long={20}
+              lat={0}
+            />
+            <ProductListCard
+              id={1237}
+              imgUrl="https://links.papareact.com/gn7"
+              title="Product name 3 "
+              rating={4.5}
+              price="11 $"
+              address="Agadir"
+              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
+              long={20}
+              lat={0}
+            />
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );
 };
 const style = StyleSheet.create({
-  categoryContainer: {
-    flexDirection: "row",
-    marginTop: 30,
-    marginBottom: 20,
-    justifyContent: "space-between",
-  },
+  // categoryContainer: {
+  //   flexDirection: "row",
+  //   marginTop: 30,
+  //   marginBottom: 20,
+  // justifyContent: "space-between",
+  // },
   categoryText: { fontSize: 16, color: "grey", fontWeight: "bold" },
   categoryTextSelected: {
     color: "#4E1703",

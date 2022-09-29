@@ -22,20 +22,17 @@ import FAQScreen from "./screens/FAQScreen";
 import CheckoutScreen from "./screens/CheckoutScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import { Provider } from "react-redux";
-import { Store } from "./store";
+import { store } from "./store";
 import BasketScreen from "./screens/BasketScreen";
 import ProductListScreen from "./screens/ProductListScreen";
 import ProductDetailsScreen from "./screens/ProductDetailsScreen";
 
-import HomeScreen from "./screens/HomeScreen";
-import CoopScreen from "./screens/CoopScreen";
-import CoopListScreen from "./screens/CoopListScreen";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Provider store={Store}>
+      <Provider store={store}>
         <Stack.Navigator>
           <Stack.Screen
             name="FOB"
