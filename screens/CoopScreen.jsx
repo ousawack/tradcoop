@@ -1,20 +1,50 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useDispatch } from "react-redux";
+import { setCooperative } from "../features/cooperativeSlice";
+import { urlFor } from "../sanity";
 
 const CoopScreen = () => {
+  const dispatch = useDispatch();
   const {
-    params: { id, imgUrl, title, rating, address, short_description },
+    params: {
+      id,
+      imgUrl,
+      title,
+      rating,
+      address,
+      short_description,
+      products,
+      long,
+      lat,
+    },
   } = useRoute();
+
+  useEffect(() => {
+    dispatch(
+      setCooperative({
+        id,
+        imgUrl,
+        title,
+        rating,
+        address,
+        short_description,
+        products,
+        long,
+        lat,
+      })
+    );
+  }, []);
+
   const totalStars = 5;
   const gainStars = rating;
+
   return (
     <View className="bg-[#EFDEBE]   flex-1">
       <Image
-        source={{
-          uri: imgUrl,
-        }}
+        source={{ uri: urlFor(imgUrl).url() }}
         className="w-full h-64 p-2 "
       />
       <View className="px-6">
@@ -58,6 +88,18 @@ const CoopScreen = () => {
             Address
           </Text>
         </View>
+        {products.map((product) => {
+          return (
+            <ProductListCard
+              key={product._id}
+              id={product._id}
+              name={product.name}
+              description={product.short_description}
+              price={product.price}
+              image={product.image}
+            />
+          );
+        })}
       </View>
     </View>
   );
