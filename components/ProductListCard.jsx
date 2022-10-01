@@ -29,7 +29,7 @@ const ProductCard = ({
           price,
         })
       }
-      className="bg-[#f0e9dc] mx-[10] my-[10] shadow-md shadow-amber-800 rounded-lg"
+      className="bg-[#f0e9dc] mx-7 my-[10] shadow-md shadow-amber-800 rounded-lg flex-1 items-center"
     >
       <Image
         source={{
@@ -41,15 +41,15 @@ const ProductCard = ({
         <View className="justify-between pt-2 items-baseline">
           <Text
             style={{ fontFamily: "Poppins_700Bold" }}
-            className="text-sm text-[#4E1703]"
+            className="text-xs text-[#4E1703]"
           >
             {title}
           </Text>
           <Text
             style={{ fontFamily: "Poppins_800ExtraBold" }}
-            className="text-lg text-[#7B420E]"
+            className="text-lg text-[#7B420E] self-center "
           >
-            {price}
+            {price} DH
           </Text>
         </View>
       </View>

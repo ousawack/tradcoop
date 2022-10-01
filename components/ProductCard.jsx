@@ -2,7 +2,9 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import sanityClient, { urlFor } from "../sanity";
 
+import { useState, useEffect } from "react";
 /* Coop Product Card */
 
 const ProductCard = ({
@@ -15,6 +17,29 @@ const ProductCard = ({
   description,
 }) => {
   const navigation = useNavigation();
+  const [Cooperative, setCooperative] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+            *[_type =="cooperative"]{
+              ...,
+              product[]->{
+                ...,
+                type-> {
+                  name
+              }
+        }
+            }
+        `
+      )
+      .then((data) => {
+        setCooperative(data);
+      });
+  }, []);
+  const totalStars = 5;
+  const gainStars = rating;
   return (
     <TouchableOpacity
       onPress={() =>
@@ -33,7 +58,7 @@ const ProductCard = ({
     >
       <Image
         source={{
-          uri: imgUrl,
+          uri: urlFor(imgUrl).url(),
         }}
         className="h-36 w-64 rounded-sm"
       />
@@ -49,16 +74,27 @@ const ProductCard = ({
             style={{ fontFamily: "Poppins_800ExtraBold" }}
             className="text-xl text-[#7B420E]"
           >
-            {price}
+            {price} DH
           </Text>
         </View>
         <View className="flex-row items-center space-x-1">
-          <Text
-            style={{ fontFamily: "Poppins_600SemiBold" }}
-            className="text-[#7B420E]"
-          >
-            <Text className="text-[#C3700D]">Cooperative :</Text> {title}
-          </Text>
+          <View className="flex-row">
+            {Array.from({ length: gainStars }, (x, i) => {
+              return <StarIcon key={i} name="star" size={20} color="#7B420E" />;
+            })}
+
+            {Array.from({ length: totalStars - gainStars }, (x, i) => {
+              return (
+                <StarIcon
+                  key={i}
+                  name="star-border"
+                  size={20}
+                  color="#7B420E"
+                  opacity={0.3}
+                />
+              );
+            })}
+          </View>
         </View>
       </View>
     </TouchableOpacity>
