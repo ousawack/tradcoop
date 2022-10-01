@@ -14,7 +14,7 @@ import {
   selectedBasketItemsWithId,
 } from "../src/features/basketSlice";
 import BasketIcon from "../components/BasketIcon";
-import { urlFor } from "../sanity";
+import { urlFor } from "../src/sanity";
 import { StarIcon } from "react-native-heroicons/outline";
 
 const ProductDetailsScreen = () => {

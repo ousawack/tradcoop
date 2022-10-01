@@ -30,21 +30,6 @@ const Main = () => {
           headerShown: false,
         }}
       >
-        {/* <Stack.Screen
-            name="FOB"
-            component={FirstOnBoarding}
-            
-          />
-          <Stack.Screen
-            name="SOB"
-            component={SecondOnBoarding}
-            
-          />
-          <Stack.Screen
-            name="TOB"
-            component={ThirdOnBoarding}
-            
-          /> */}
         <MainStack.Screen name="Home" component={HomeScreen} />
         <MainStack.Screen name="Coop" component={CoopScreen} />
         <MainStack.Screen name="CoopList" component={CoopListScreen} />

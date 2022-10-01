@@ -15,7 +15,7 @@ import {
 } from "react-native-heroicons/outline";
 import { TouchableOpacity } from "react-native";
 import ProductListCard from "../components/ProductListCard";
-import sanityClient, { urlFor } from "../sanity";
+import sanityClient, { urlFor } from "../src/sanity";
 
 import { useState, useEffect } from "react";
 const width = Dimensions.get("window").width / 2 - 30;
