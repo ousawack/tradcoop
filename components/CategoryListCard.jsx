@@ -3,13 +3,13 @@ import React from "react";
 import pottery from "../assets/pottery.png";
 import { useNavigation } from "@react-navigation/native";
 
-const CategoryListCard = () => {
+const CategoryListCard = ({ imgUrl, title }) => {
   const navigation = useNavigation();
   return (
     <View className="border-t border-solid border-[#C3700D]">
       <TouchableOpacity className="flex-row items-center space-x-6 py-6 px-8 ">
         <Image
-          source={pottery}
+          source={{ uri: imgUrl }}
           style={{ width: 72, height: 72 }}
           className="rounded-lg"
         />
@@ -17,7 +17,7 @@ const CategoryListCard = () => {
           style={{ fontFamily: "Poppins_700Bold" }}
           className="text-lg text-[#4E1703]"
         >
-          Poterry
+          {title}
         </Text>
       </TouchableOpacity>
     </View>
