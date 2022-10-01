@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import {
   selectBasketTotal,
   selectedBasketItems,
-} from "../features/basketSlice";
+} from "../src/features/basketSlice";
 import { useNavigation } from "@react-navigation/native";
 
 const BasketIcon = () => {

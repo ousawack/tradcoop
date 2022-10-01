@@ -1,3 +1,9 @@
+import React, { useState } from "react";
+
+import { supabase } from "../../src/initSupabase";
+
+//////////
+
 import {
   View,
   Text,
@@ -6,36 +12,36 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React from "react";
-import SignUp from "../assets/SignUp.png";
-import {
-  useFonts,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
-  Poppins_800ExtraBold,
-  Poppins_900Black,
-} from "@expo-google-fonts/poppins";
-import { useNavigation } from "@react-navigation/native";
+import SignUp from "../../assets/SignUp.png";
 
-const SignUpScreen = () => {
-  const navigation = useNavigation();
-  let [fontsLoaded] = useFonts({
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-    Poppins_700Bold,
-    Poppins_800ExtraBold,
-    Poppins_900Black,
-  });
+///////////
 
-  if (!fontsLoaded) {
-    return null;
+export default function ({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function register() {
+    setLoading(true);
+    const { user, error } = await supabase.auth.signUp({
+      full_name: fullname,
+      email: email,
+      password: password,
+    });
+    if (!error && !user) {
+      setLoading(false);
+      alert("Check your email for the login link!");
+    }
+    if (error) {
+      setLoading(false);
+      alert(error.message);
+    }
   }
-
   return (
-    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-9 px-6">
+    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-3 px-6">
       <TouchableOpacity
-        onPress={() => navigation.navigate("SignIn")}
+        onPress={() => navigation.navigate("Login")}
         className="flex space-x-[1] items-center justify-center mb-1"
       >
         <Text
@@ -66,8 +72,14 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            placeholder="ex: John Doe"
             className="flex-1 bg-white rounded-lg p-2 "
+            placeholder="Enter your full name"
+            value={fullname}
+            autoCapitalize="none"
+            autoCompleteType="off"
+            autoCorrect={false}
+            keyboardType="default"
+            onChangeText={(text) => setFullname(text)}
           />
         </View>
         <View className="space-y-[1]">
@@ -79,8 +91,14 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            placeholder="example@example.xyz"
             className="flex-1 bg-white rounded-lg p-2 "
+            placeholder="Enter your email"
+            value={email}
+            autoCapitalize="none"
+            autoCompleteType="off"
+            autoCorrect={false}
+            keyboardType="email-address"
+            onChangeText={(text) => setEmail(text)}
           />
         </View>
         <View className="space-y-[1]">
@@ -92,26 +110,33 @@ const SignUpScreen = () => {
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            placeholder="password"
             className="flex-1 bg-white rounded-lg p-2 "
+            placeholder="Enter your password"
+            value={password}
+            autoCapitalize="none"
+            autoCompleteType="off"
+            autoCorrect={false}
+            secureTextEntry={true}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
       </View>
       <View className="place-items-end items-center mt-6">
         <TouchableOpacity
-          onPress={() => navigation.navigate("PhoneNumber")}
-          className="bg-[#4E1703] rounded-2xl px-[109] py-4"
+          onPress={() => {
+            register();
+          }}
+          disabled={loading}
+          className="bg-[#4E1703] rounded-2xl px-[100] py-4"
         >
           <Text
             style={{ fontFamily: "Poppins_700Bold" }}
             className="text-center text-white text-2xl"
           >
-            Sign Up
+            {loading ? "Loading" : "Sign Up"}
           </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
-};
-
-export default SignUpScreen;
+}

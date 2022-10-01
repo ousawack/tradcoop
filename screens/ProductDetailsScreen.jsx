@@ -12,7 +12,7 @@ import {
   addToBasket,
   removeFromBasket,
   selectedBasketItemsWithId,
-} from "../features/basketSlice";
+} from "../src/features/basketSlice";
 import BasketIcon from "../components/BasketIcon";
 import { urlFor } from "../sanity";
 import { StarIcon } from "react-native-heroicons/outline";

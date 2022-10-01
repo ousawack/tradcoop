@@ -10,8 +10,28 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import OTPTextView from "react-native-otp-textinput";
+import { useState } from "react";
+import { supabase } from "../../src/initSupabase";
 
-const PhoneVerificationScreen = () => {
+const PhoneVerificationScreen = (phonenumber) => {
+  const [token, setToken] = useState("");
+
+  async function phoneverification() {
+    setLoading(true);
+    let { session, error } = await supabase.auth.verifyOTP({
+      phone: phonenumber,
+      token: token,
+    });
+    if (!error && !user) {
+      setLoading(false);
+      alert("Tap in our SMS verification code!");
+    }
+    if (error) {
+      setLoading(false);
+      alert(error.message);
+    }
+  }
+
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
@@ -45,15 +65,18 @@ const PhoneVerificationScreen = () => {
           style={{ fontFamily: "Poppins_600SemiBold" }}
           className="text-xl text-center text-[#4E1703]"
         >
-          Enter the 4-pin code you have received to verify your account.
+          Enter the 6-pin code you have received to verify your account.
         </Text>
       </View>
       <OTPTextView
         style={{ fontFamily: "Poppins_600SemiBold" }}
-        className="flex-1 items-center justify-center m-1 p-4 rounded-full border-solid border-2 border-[#7B420E] text-xl text-center"
+        className="flex-1 items-center justify-center m-1 p-1 rounded-full border-solid border-2 border-[#7B420E] text-xl text-center"
+        inputCount={6}
+        defaultValue={token}
+        handleTextChange={(text) => setToken(text)}
       />
       <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => phoneverification()}
         className="bg-[#4E1703] rounded-2xl px-[20] my-14 mx-10 py-4"
       >
         <Text

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserProfile from "../assets/UserProfile.png";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -7,13 +7,63 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { supabase } from "../src/initSupabase";
 
-const UserProfileScreen = () => {
+const UserProfileScreen = ({ session }) => {
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
+  const [region, setRegion] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+
+  useEffect(() => {
+    if (session) getProfile();
+  }, [session]);
+
+  async function getProfile() {
+    try {
+      setLoading(true);
+      if (!session?.user) throw new Error("No user on the session!");
+
+      let { data, error, status } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", session?.user.id)
+        .single();
+      if (error && status !== 406) {
+        throw error;
+      }
+
+      if (data) {
+        setUsername(data.username);
+        setAvatarUrl(data.avatar_url);
+        setFullname(data.full_name);
+        setAddress(data.address);
+        setCountry(data.country);
+        setCity(data.city);
+        setRegion(data.region);
+        setZipcode(data.zip_code);
+        setPhonenumber(data.phone_number);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        Alert.alert(error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const navigation = useNavigation();
 
   return (
-    <ScrollView className="flex-1 bg-[#EFDEBE] pt-10">
-      <View className="px-8 space-y-2">
+    <ScrollView className="flex-1 bg-[#EFDEBE] pt-5">
+      {/* <View className="px-8 pb-5 space-y-2">
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
           className="text-2xl text-[#4E1703]"
@@ -31,15 +81,15 @@ const UserProfileScreen = () => {
           style={{ fontFamily: "Poppins_700Bold" }}
           className="mt-6 text-xl text-[#4E1703]"
         >
-          John Doe
+          {fullname}
         </Text>
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
           className="mt-2 text-sm text-[#7B420E]"
         >
-          Agadir, Souss Massa, Morocco
+          {address}
         </Text>
-      </View>
+      </View> */}
       <View className="space-y-2">
         <View className="border-y border-[#C3700D] px-10">
           <TouchableOpacity
@@ -121,7 +171,15 @@ const UserProfileScreen = () => {
         </View>
         <View className="border-y border-[#C3700D] px-10 mb-10">
           <TouchableOpacity
-            onPress={() => navigation.navigate("Checkout")}
+            onPress={async () => {
+              const { error } = await supabase.auth.signOut();
+              if (!error) {
+                alert("Signed out!");
+              }
+              if (error) {
+                alert(error.message);
+              }
+            }}
             className="flex-row py-8 space-x-6 items-center"
           >
             <AntDesign name="logout" size={30} color="#4E1703" />

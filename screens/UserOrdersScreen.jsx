@@ -7,7 +7,7 @@ const UserOrdersScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView className="flex-1 bg-[#EFDEBE] pt-10">
+    <ScrollView className="flex-1 bg-[#EFDEBE] pt-5">
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         className="flex-row items-end px-8 space-y-2 space-x-2"

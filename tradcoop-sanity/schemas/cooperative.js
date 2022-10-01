@@ -47,13 +47,6 @@ export default {
           .error("Please enter a Value between 1 and 5"),
     },
     {
-      name: "type",
-      title: "Category",
-      validation: (Rule) => Rule.required(),
-      type: "reference",
-      to: [{ type: "category" }],
-    },
-    {
       name: "products",
       type: "array",
       title: "Products",

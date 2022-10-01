@@ -14,8 +14,28 @@ import {
   Poppins_900Black,
 } from "@expo-google-fonts/poppins";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+import { supabase } from "../../src/initSupabase";
 
 const PhoneNumberScreen = () => {
+  const [phonenumber, setPhonenumber] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function phoneregister() {
+    setLoading(true);
+    let { user, error } = await supabase.auth.signInWithOtp({
+      phone: phonenumber,
+    });
+    if (!error && !user) {
+      setLoading(false);
+      alert("Check your SMS verification code!");
+    }
+    if (error) {
+      setLoading(false);
+      alert(error.message);
+    }
+  }
+
   const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
@@ -55,17 +75,26 @@ const PhoneNumberScreen = () => {
           style={{ fontFamily: "Poppins_500Medium" }}
           placeholder="Enter your phone number"
           className="flex-1 bg-white rounded-lg p-2"
+          value={phonenumber}
+          autoCapitalize="none"
+          autoCompleteType="off"
+          autoCorrect={false}
+          keyboardType="phone-pad"
+          onChangeText={(text) => setPhonenumber(text)}
         />
         <View className="py-12">
           <TouchableOpacity
-            onPress={() => navigation.navigate("PhoneVerification")}
+            onPress={() => {
+              phoneregister() && navigation.navigate("PhoneVerification");
+            }}
+            disabled={loading}
             className="self-center "
           >
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-base text-[#7B420E]"
             >
-              Send code
+              {loading ? "Loading" : "Send code"}
             </Text>
           </TouchableOpacity>
         </View>

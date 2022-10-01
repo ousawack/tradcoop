@@ -28,7 +28,7 @@ const PaymentScreen = () => {
         showsVerticalScrollIndicator={false}
         className="space-y-6"
       >
-        <View className="flex-row justify-between pt-6 px-3">
+        <View className="flex-row justify-between pt-3 px-3">
           <Text
             style={{ fontFamily: "Poppins_600SemiBold" }}
             className="text-xl text-[#7B420E]"

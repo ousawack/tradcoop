@@ -31,7 +31,7 @@ const ThirdOnBoarding = () => {
   }
 
   return (
-    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-9 px-6">
+    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-3 px-6">
       <TouchableOpacity
         onPress={() => navigation.navigate("SignIn")}
         className="flex space-x-[1] items-center justify-center mb-2"
