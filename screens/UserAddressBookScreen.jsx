@@ -13,7 +13,7 @@ const UserAddressBookScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView className="flex-1 bg-[#EFDEBE] pt-10">
+    <ScrollView className="flex-1 bg-[#EFDEBE] pt-5">
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         className="flex-row items-end px-8 space-y-2 space-x-2"
@@ -26,7 +26,7 @@ const UserAddressBookScreen = () => {
           Address book
         </Text>
       </TouchableOpacity>
-      <View className="space-y-6 my-12 mx-8">
+      <View className="space-y-6 my-8 mx-8">
         <View className="space-y-[1]">
           <Text
             style={{ fontFamily: "Poppins_600SemiBold" }}

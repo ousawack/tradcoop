@@ -32,7 +32,7 @@ const SecondOnBoarding = () => {
   }
 
   return (
-    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-8 px-6">
+    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-3 px-6">
       <TouchableOpacity
         onPress={() => navigation.navigate("SignUp")}
         className="flex-row-reverse space-x-[1] place-items-end items-center mb-2"

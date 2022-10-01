@@ -20,7 +20,7 @@ const CoopListScreen = () => {
     params: { id, imgUrl, title, rating, address, short_description },
   } = useRoute();
   return (
-    <View className="bg-[#EFDEBE] pt-8  flex-1">
+    <View className="bg-[#EFDEBE] pt-3 flex-1">
       <ScrollView>
         <SafeAreaView>
           {/* Header */}

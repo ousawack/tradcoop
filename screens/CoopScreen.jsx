@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useDispatch } from "react-redux";
-import { setCooperative } from "../features/cooperativeSlice";
-import { urlFor } from "../sanity";
+import { setCooperative } from "../src/features/cooperativeSlice";
+import { urlFor } from "../src/sanity";
 
 const CoopScreen = () => {
   const dispatch = useDispatch();

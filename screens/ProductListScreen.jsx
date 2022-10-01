@@ -27,7 +27,7 @@ const ProductListScreen = () => {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        className="flex-row mb-7 space-x-6 mx-4 content-between"
+        className="flex-row mb-3 space-x-6 mx-4 content-between"
         // contentContainerStyle={{ justifyContent: "space-between" }}
         style={style.categoryContainer}
       >

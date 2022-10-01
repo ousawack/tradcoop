@@ -23,7 +23,7 @@ import {
   addToBasket,
   removeFromBasket,
   selectedBasketItemsWithId,
-} from "../features/basketSlice";
+} from "../src/features/basketSlice";
 import BasketIcon from "../components/BasketIcon";
 
 const ProductDetailsScreen = () => {

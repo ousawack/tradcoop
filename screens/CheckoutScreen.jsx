@@ -15,7 +15,7 @@ import { XMarkIcon } from "react-native-heroicons/outline";
 const CheckoutScreen = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-10">
+    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-5">
       <View className="px-8 space-y-2 pb-4">
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
