@@ -15,13 +15,30 @@ import {
 } from "react-native-heroicons/outline";
 import { TouchableOpacity } from "react-native";
 import ProductListCard from "../components/ProductListCard";
+import sanityClient, { urlFor } from "../sanity";
+
+import { useState, useEffect } from "react";
 const width = Dimensions.get("window").width / 2 - 30;
 
 const ProductListScreen = () => {
   const [catergoryIndex, setCategoryIndex] = React.useState(0);
 
   const categories = ["ALL", "POTTERY", "ORGANIC", "DECORATION", "SYNTHETIC"];
+  const [Products, setProducts] = useState([]);
 
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+            *[_type =="product"]{
+              ...,
+            }
+        `
+      )
+      .then((data) => {
+        setProducts(data);
+      });
+  }, []);
   const CategoryListCard = () => {
     return (
       <ScrollView
@@ -72,41 +89,20 @@ const ProductListScreen = () => {
           }}
         >
           <CategoryListCard />
-          <View className="flex flex-row flex-wrap">
-            <ProductListCard
-              id={1234}
-              imgUrl="https://links.papareact.com/gn7"
-              title="Product name 1"
-              rating={4.5}
-              price="13 $"
-              address="Agadir"
-              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-              long={20}
-              lat={0}
-            />
-            <ProductListCard
-              id={1235}
-              imgUrl="https://links.papareact.com/gn7"
-              title="Product name 2"
-              rating={4.5}
-              price="12 $"
-              address="Agadir"
-              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care.Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-              long={20}
-              lat={0}
-            />
-            <ProductListCard
-              id={1237}
-              imgUrl="https://links.papareact.com/gn7"
-              title="Product name 3 "
-              rating={4.5}
-              price="11 $"
-              address="Agadir"
-              description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-              long={20}
-              lat={0}
-            />
-          </View>
+          {Products?.map((product) => (
+            <View className="flex flex-row flex-wrap">
+              <ProductListCard
+                key={product.id}
+                id={product.id}
+                imgUrl={urlFor(product.image).url()}
+                title={product.name}
+                rating={product.rating}
+                price={product.price}
+                address={product.address}
+                description={product.short_description}
+              />
+            </View>
+          ))}
         </ScrollView>
       </SafeAreaView>
     </View>
