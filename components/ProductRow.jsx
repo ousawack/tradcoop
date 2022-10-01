@@ -3,9 +3,28 @@ import React from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import ProductCard from "./ProductCard";
 import { useNavigation } from "@react-navigation/native";
+import sanityClient, { urlFor } from "../sanity";
+
+import { useState, useEffect } from "react";
 
 const ProductRow = ({ id, title, description }) => {
   const navigation = useNavigation();
+  const [Products, setProducts] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+            *[_type =="product"]{
+              ...,
+            }
+        `
+      )
+      .then((data) => {
+        setProducts(data);
+      });
+  }, []);
+
   return (
     <View>
       <View className="mx-2 my-3">
@@ -38,39 +57,18 @@ const ProductRow = ({ id, title, description }) => {
           className="pt-3"
         >
           {/* Coop Product Cards... */}
-          <ProductCard
-            id={1234}
-            imgUrl="https://links.papareact.com/gn7"
-            title="Product name 1"
-            rating={4.5}
-            price="13 $"
-            address="Agadir"
-            description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-            long={20}
-            lat={0}
-          />
-          <ProductCard
-            id={1235}
-            imgUrl="https://links.papareact.com/gn7"
-            title="Product name 2"
-            rating={4.5}
-            price="12 $"
-            address="Agadir"
-            description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care.Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care. Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-            long={20}
-            lat={0}
-          />
-          <ProductCard
-            id={1237}
-            imgUrl="https://links.papareact.com/gn7"
-            title="Product name 3 "
-            rating={4.5}
-            price="11 $"
-            address="Agadir"
-            description="Handmade is one of the most effective descriptors to help emphasize the quality and uniqueness of a product. Like any other word, though, it comes with baggage and must be used with care."
-            long={20}
-            lat={0}
-          />
+          {Products?.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              imgUrl={urlFor(product.image).url()}
+              title={product.name}
+              rating={product.rating}
+              price={product.price}
+              address={product.address}
+              description={product.short_description}
+            />
+          ))}
         </ScrollView>
       </View>
     </View>

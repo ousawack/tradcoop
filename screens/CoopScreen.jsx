@@ -88,7 +88,7 @@ const CoopScreen = () => {
             Address
           </Text>
         </View>
-        {products.map((product) => {
+        {products?.map((product) => {
           return (
             <ProductListCard
               key={product._id}

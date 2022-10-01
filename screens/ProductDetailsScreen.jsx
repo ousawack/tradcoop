@@ -1,19 +1,8 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  TextInput,
-  ScrollView,
-  StyleSheet,
-  Pressable,
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import React from "react";
-import produit from "../assets/Product1.png";
-import HomeScreenBanner from "../assets/HomeScreenBanner.jpg";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
 import {
   MinusCircleIcon,
   PlusCircleIcon,
@@ -25,10 +14,12 @@ import {
   selectedBasketItemsWithId,
 } from "../features/basketSlice";
 import BasketIcon from "../components/BasketIcon";
+import { urlFor } from "../sanity";
+import { StarIcon } from "react-native-heroicons/outline";
 
 const ProductDetailsScreen = () => {
   const {
-    params: { title, description, rating, price, id },
+    params: { title, description, rating, price, id, imgUrl },
   } = useRoute();
   const totalStars = 5;
   const gainStars = rating;
@@ -57,11 +48,10 @@ const ProductDetailsScreen = () => {
               decelerationRate="fast"
               pagingEnabled
             >
-              <Image source={produit} className="h-[330] w-screen" />
-
-              <Image source={HomeScreenBanner} className="h-[330] w-screen" />
-
-              <Image source={produit} className="h-[330] w-screen" />
+              <Image
+                source={{ uri: urlFor(imgUrl).url() }}
+                className="h-[330] w-screen"
+              />
             </ScrollView>
           </View>
           <View className="mt-7">
@@ -76,33 +66,31 @@ const ProductDetailsScreen = () => {
             <Text className="text-lg font-bold  py-0 px-3 text-[#4E1703]">
               Reviews :
             </Text>
-            <View className="flex-row">
-              {Array.from({ length: gainStars }, (x, i) => {
-                return (
-                  <MaterialIcons
-                    key={i}
-                    name="star"
-                    size={30}
-                    color="#FFA000"
-                  />
-                );
-              })}
+            <View className="flex-row items-center space-x-1">
+              <View className="flex-row">
+                {Array.from({ length: gainStars }, (x, i) => {
+                  return (
+                    <StarIcon key={i} name="star" size={30} color="#7B420E" />
+                  );
+                })}
 
-              {Array.from({ length: totalStars - gainStars }, (x, i) => {
-                return (
-                  <MaterialIcons
-                    key={i}
-                    name="star-border"
-                    size={30}
-                    color="#FFA000"
-                  />
-                );
-              })}
+                {Array.from({ length: totalStars - gainStars }, (x, i) => {
+                  return (
+                    <StarIcon
+                      key={i}
+                      name="star-border"
+                      size={30}
+                      color="#7B420E"
+                      opacity={0.3}
+                    />
+                  );
+                })}
+              </View>
             </View>
           </View>
           <View className="mt-7 ">
             <Text className="px-3 text-left text-lg font-bold  text-[#4E1703]">
-              Price : {price}
+              Price : <Text className="text-[#7B420E]">{price} DH</Text>
             </Text>
           </View>
           <View
