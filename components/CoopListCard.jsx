@@ -1,20 +1,23 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
-import { useNavigation } from "@react-navigation/native";
 
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
+import { urlFor } from "../sanity";
 /* Coop  Card */
 
 const CoopListCard = ({
   id,
   imgUrl,
   title,
-  rating,
-  genre,
   address,
   short_description,
+  rating,
 }) => {
   const navigation = useNavigation();
+  const totalStars = 5;
+  const gainStars = rating;
   return (
     <TouchableOpacity
       onPress={() =>
@@ -32,7 +35,7 @@ const CoopListCard = ({
     >
       <Image
         source={{
-          uri: imgUrl,
+          uri: urlFor(imgUrl).url(),
         }}
         className="h-16 w-24 rounded-lg shadow-md shadow-amber-800"
       />
@@ -44,19 +47,23 @@ const CoopListCard = ({
           {title}
         </Text>
         <View className="flex-row items-center space-x-1">
-          <StarIcon color="#C3700D" opacity={0.5} size={22} />
-          <Text
-            style={{ fontFamily: "Poppins_600SemiBold" }}
-            className="text-sm text-[#7B420E]"
-          >
-            <Text
-              style={{ fontFamily: "Poppins_600SemiBold" }}
-              className="text-sm text-[#C3700D]"
-            >
-              {rating}
-            </Text>{" "}
-            . {genre}
-          </Text>
+          <View className="flex-row">
+            {Array.from({ length: gainStars }, (x, i) => {
+              return <StarIcon key={i} name="star" size={20} color="#7B420E" />;
+            })}
+
+            {Array.from({ length: totalStars - gainStars }, (x, i) => {
+              return (
+                <StarIcon
+                  key={i}
+                  name="star-border"
+                  size={20}
+                  color="#7B420E"
+                  opacity={0.3}
+                />
+              );
+            })}
+          </View>
         </View>
         <View className="flex-row items-center space-x-1">
           <MapPinIcon color="#7B420E" opacity={0.4} size={22} />
