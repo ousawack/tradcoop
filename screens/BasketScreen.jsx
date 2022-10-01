@@ -15,7 +15,7 @@ import {
   removeFromBasket,
   selectBasketTotal,
   selectedBasketItems,
-} from "../features/basketSlice";
+} from "../src/features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/outline";
 import produit from "../assets/Product1.png";
 
