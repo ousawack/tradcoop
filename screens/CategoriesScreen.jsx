@@ -1,10 +1,25 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryListCard from "../components/CategoryListCard";
+import sanityClient, { urlFor } from "../src/sanity";
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({ title }) => {
+  const [categories, setCategories] = useState();
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+      *[_type=="category"]
+    `
+      )
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+
   return (
-    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-10">
+    <SafeAreaView className="bg-[#EFDEBE] flex-1 pt-5">
       <View className="px-8 space-y-2 pb-4">
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
@@ -20,13 +35,15 @@ const CategoriesScreen = () => {
         vertical
         showsVerticalScrollIndicator={false}
       >
-        <CategoryListCard />
-        <CategoryListCard />
-        <CategoryListCard />
-        <CategoryListCard />
-        <CategoryListCard />
-        <CategoryListCard />
-        <CategoryListCard />
+        {categories?.map((category) => {
+          return (
+            <CategoryListCard
+              key={category._id}
+              imgUrl={urlFor(category.image).url()}
+              title={category.name}
+            />
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
