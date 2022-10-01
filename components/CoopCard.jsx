@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
-import { urlFor } from "../sanity";
+import { urlFor } from "../src/sanity";
 /* Coop  Card */
 
 const CoopCard = ({

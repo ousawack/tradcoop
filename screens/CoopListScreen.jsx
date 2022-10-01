@@ -15,7 +15,7 @@ import {
   UserCircleIcon,
 } from "react-native-heroicons/outline";
 import CoopListCard from "../components/CoopListCard";
-import sanityClient, { urlFor } from "../sanity";
+import sanityClient, { urlFor } from "../src/sanity";
 import { useState, useEffect } from "react";
 
 const CoopListScreen = () => {

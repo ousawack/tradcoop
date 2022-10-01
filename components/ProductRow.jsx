@@ -3,7 +3,7 @@ import React from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import ProductCard from "./ProductCard";
 import { useNavigation } from "@react-navigation/native";
-import sanityClient, { urlFor } from "../sanity";
+import sanityClient, { urlFor } from "../src/sanity";
 
 import { useState, useEffect } from "react";
 

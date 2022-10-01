@@ -115,7 +115,7 @@ export default function ({ navigation }) {
       <View className="place-items-end items-center mt-6">
         <TouchableOpacity
           onPress={() => {
-            login() && navigation.navigate("PhoneNumber");
+            login();
           }}
           disabled={loading}
           className="bg-[#4E1703] rounded-2xl px-[100] py-4"

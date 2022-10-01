@@ -4,7 +4,7 @@ import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
 
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import { urlFor } from "../sanity";
+import { urlFor } from "../src/sanity";
 /* Coop  Card */
 
 const CoopListCard = ({
