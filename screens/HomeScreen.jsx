@@ -72,16 +72,14 @@ const HomeScreen = () => {
         <Categories title="Categories" />
         {/* Coopratives */}
         <CoopRow
-          id="123"
           title="Cooperatives"
-          description="the Coop located in Morocco"
+          description="Some cooperatives located in Morocco"
         />
 
         {/* Products  */}
         <ProductRow
-          id="1234"
           title="Products"
-          description="jesus some good ass products"
+          description="Some products our customers have liked"
         />
       </View>
     </ScrollView>

@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 
@@ -11,27 +11,33 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addToBasket,
   removeFromBasket,
-  selectedBasketItemsWithId,
+  selectBasketItemsWithId,
 } from "../src/features/basketSlice";
 import BasketIcon from "../components/BasketIcon";
 import { urlFor } from "../src/sanity";
 import { StarIcon } from "react-native-heroicons/outline";
+import Currency from "react-currency-formatter";
 
 const ProductDetailsScreen = () => {
   const {
     params: { title, description, rating, price, id, imgUrl },
   } = useRoute();
-  const totalStars = 5;
-  const gainStars = rating;
+
+  const items = useSelector((state) => selectBasketItemsWithId(state, id));
+
   const dispatch = useDispatch();
-  const items = useSelector((state) => selectedBasketItemsWithId(state, id));
+
   const addItemToBasket = () => {
-    dispatch(addToBasket({ title, description, price, id }));
+    dispatch(addToBasket({ id, title, description, price, imgUrl }));
   };
+
   const removeItemFromBasket = () => {
     if (!items.length > 0) return;
     dispatch(removeFromBasket({ id }));
   };
+
+  const totalStars = 5;
+  const gainStars = rating;
 
   return (
     <>
@@ -54,20 +60,41 @@ const ProductDetailsScreen = () => {
               />
             </ScrollView>
           </View>
+
+          <View className="mt-7 flex-row justify-between">
+            <View className="w-48">
+              <Text
+                style={{ fontFamily: "Poppins_700Bold" }}
+                className="px-3 text-left text-xl text-[#4E1703]"
+              >
+                {title}
+              </Text>
+            </View>
+            <Text
+              style={{ fontFamily: "Poppins_800ExtraBold" }}
+              className="text-2xl mr-3 -mt-[3] text-[#7B420E]"
+            >
+              <Currency quantity={price} currency="MAD" />
+            </Text>
+          </View>
+
           <View className="mt-7">
-            <Text className="px-3 text-left text-lg font-bold text-[#4E1703]">
-              {title}
+            <Text
+              style={{ fontFamily: "Poppins_600SemiBold" }}
+              className="px-3 text-left text-[#7B420E]"
+            >
+              {description}
             </Text>
           </View>
-          <View className=" mt-7">
-            <Text className="px-3 text-left text-[#7B420E]">{description}</Text>
-          </View>
-          <View className=" flex-row justify-left space-x-2 mt-7">
-            <Text className="text-lg font-bold  py-0 px-3 text-[#4E1703]">
-              Reviews :
+          <View className=" flex-row justify-left space-x-1 mt-7">
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-lg px-3 text-[#4E1703]"
+            >
+              Rating :
             </Text>
-            <View className="flex-row items-center space-x-1">
-              <View className="flex-row">
+            <View className="flex-row space-x-1">
+              <View className="flex-row -mt-1">
                 {Array.from({ length: gainStars }, (x, i) => {
                   return (
                     <StarIcon key={i} name="star" size={30} color="#7B420E" />
@@ -88,24 +115,22 @@ const ProductDetailsScreen = () => {
               </View>
             </View>
           </View>
-          <View className="mt-7 ">
-            <Text className="px-3 text-left text-lg font-bold  text-[#4E1703]">
-              Price : <Text className="text-[#7B420E]">{price} DH</Text>
-            </Text>
-          </View>
           <View
-            className="mt-5 pb-24"
+            className="mt-4 pb-20"
             style={[{ flexDirection: "row", alignItems: "center" }]}
           >
             <View style={[{ flex: 1, flexDirection: "row" }]}>
-              <Text className="px-3 text-left text-lg font-bold  text-[#4E1703]">
+              <Text
+                style={{ fontFamily: "Poppins_700Bold" }}
+                className="px-3 text-left text-lg text-[#4E1703]"
+              >
                 Quantity :
               </Text>
             </View>
             <View
               style={[{ justifyContent: "space-evenly", marginVertical: 10 }]}
             >
-              <View className="flex-row items-center space-x-2">
+              <View className="flex-row items-center space-x-2 mr-2">
                 <TouchableOpacity>
                   <MinusCircleIcon
                     disabled={!items.length}
@@ -116,7 +141,12 @@ const ProductDetailsScreen = () => {
                   />
                 </TouchableOpacity>
 
-                <Text>{items.length}</Text>
+                <Text
+                  style={{ fontFamily: "Poppins_700Bold" }}
+                  className="text-lg"
+                >
+                  {items.length}
+                </Text>
 
                 <TouchableOpacity onPress={addItemToBasket}>
                   <PlusCircleIcon

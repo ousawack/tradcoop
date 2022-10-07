@@ -3,12 +3,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   selectBasketTotal,
-  selectedBasketItems,
+  selectBasketItems,
 } from "../src/features/basketSlice";
 import { useNavigation } from "@react-navigation/native";
+import Currency from "react-currency-formatter";
 
 const BasketIcon = () => {
-  const items = useSelector(selectedBasketItems);
+  const items = useSelector(selectBasketItems);
   const navigation = useNavigation();
   const basketTotal = useSelector(selectBasketTotal);
 
@@ -26,7 +27,9 @@ const BasketIcon = () => {
         <Text className="flex-1 text-center text-lg text-white font-extrabold">
           View Basket
         </Text>
-        <Text className="text-lg text-white font-extrabold">{basketTotal}</Text>
+        <Text className="text-lg text-white font-extrabold">
+          <Currency quantity={basketTotal} currency="MAD" />
+        </Text>
       </TouchableOpacity>
     </View>
   );

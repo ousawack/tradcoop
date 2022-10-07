@@ -7,9 +7,9 @@ import sanityClient, { urlFor } from "../src/sanity";
 
 import { useState, useEffect } from "react";
 
-const ProductRow = ({ id, title, description }) => {
+const ProductRow = ({ title, description }) => {
   const navigation = useNavigation();
-  const [Products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     sanityClient
@@ -57,10 +57,10 @@ const ProductRow = ({ id, title, description }) => {
           className="pt-3"
         >
           {/* Coop Product Cards... */}
-          {Products?.map((product) => (
+          {products?.map((product) => (
             <ProductCard
-              key={product.id}
-              id={product.id}
+              key={product._id}
+              id={product._id}
               imgUrl={urlFor(product.image).url()}
               title={product.name}
               rating={product.rating}

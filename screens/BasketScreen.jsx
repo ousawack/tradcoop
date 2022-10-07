@@ -5,8 +5,6 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  StyleSheet,
-  StatusBar,
 } from "react-native";
 import React, { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -14,16 +12,18 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   removeFromBasket,
   selectBasketTotal,
-  selectedBasketItems,
+  selectBasketItems,
 } from "../src/features/basketSlice";
 import { XCircleIcon } from "react-native-heroicons/outline";
-import produit from "../assets/Product1.png";
+import { urlFor } from "../src/sanity";
+import Currency from "react-currency-formatter";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
-  const items = useSelector(selectedBasketItems);
-  const basketTotal = useSelector(selectBasketTotal);
   const dispatch = useDispatch();
+  const items = useSelector(selectBasketItems);
+  const basketTotal = useSelector(selectBasketTotal);
+
   const [groupItemsInBasket, setGroupItemsInBasket] = useState([]);
 
   useMemo(() => {
@@ -36,11 +36,16 @@ const BasketScreen = () => {
   }, [items]);
 
   return (
-    <SafeAreaView className="flex-1 bg-white" style={style.container}>
+    <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 bg-white">
         <View className="p-5 border-b border-[#EFDEBE] bg-white shadow-sm">
           <View>
-            <Text className="text-lg font-bold text-center">My Cart</Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-lg text-center"
+            >
+              My Cart
+            </Text>
           </View>
 
           <TouchableOpacity
@@ -57,14 +62,33 @@ const BasketScreen = () => {
               key={key}
               className="flex-row items-center space-x-3 bg-white py-2 px-5"
             >
-              <Text>{items.length} x</Text>
-              <Image source={produit} className="h-12 w-12 rounded-full" />
-              <Text className="flex-1">{items[0]?.title}</Text>
+              <Text
+                style={{ fontFamily: "Poppins_700Bold" }}
+                className="text-sm text-[#4E1703]"
+              >
+                {items.length} x
+              </Text>
+              <Image
+                source={{ uri: urlFor(items[0]?.imgUrl).url() }}
+                className="h-12 w-12 rounded-full"
+              />
+              <Text
+                style={{ fontFamily: "Poppins_700Bold" }}
+                className="flex-1 text-[#4E1703] text-xs"
+              >
+                {items[0]?.title}
+              </Text>
 
-              <Text className="text-#4E1703">{items[0]?.price}</Text>
+              <Text
+                style={{ fontFamily: "Poppins_600SemiBold" }}
+                className="text-gray-500 text-sm"
+              >
+                <Currency quantity={items[0]?.price} currency="MAD" />
+              </Text>
 
               <TouchableOpacity>
                 <Text
+                  style={{ fontFamily: "Poppins_600SemiBold" }}
                   className="text-[#AC9F88] text-xs"
                   onPress={() => dispatch(removeFromBasket({ id: key }))}
                 >
@@ -77,24 +101,57 @@ const BasketScreen = () => {
 
         <View className="p-5 bg-[#EFDEBE] mt-5 space-y-4">
           <View className="flex-row  justify-between">
-            <Text className="text-#4E1703">Subtotal</Text>
-            <Text className="text-#4E1703">{basketTotal}</Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-sm"
+            >
+              Subtotal
+            </Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-sm"
+            >
+              <Currency quantity={basketTotal} currency="MAD" />
+            </Text>
           </View>
 
           <View className="flex-row justify-between">
-            <Text className="text-#4E1703">Delivery Fee</Text>
-            <Text className="text-#4E1703">{"5.99$"}</Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-sm"
+            >
+              Delivery Fee
+            </Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703] text-sm"
+            >
+              <Currency quantity={74.99} currency="MAD" />
+            </Text>
           </View>
 
           <View className="flex-row justify-between">
-            <Text>Order Total</Text>
-            <Text className="font-extrabold">{basketTotal + 5.99}</Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-sm text-[#4E1703]"
+            >
+              Order Total
+            </Text>
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-[#4E1703]"
+            >
+              <Currency quantity={basketTotal + 74.99} currency="MAD" />
+            </Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate("")}
+            onPress={() => navigation.navigate("Checkout")}
             className="rounded-lg bg-[#4E1703] p-4"
           >
-            <Text className="text-center text-white text-lg font-bold">
+            <Text
+              style={{ fontFamily: "Poppins_700Bold" }}
+              className="text-center text-white text-lg"
+            >
               Place Order
             </Text>
           </TouchableOpacity>
@@ -103,11 +160,5 @@ const BasketScreen = () => {
     </SafeAreaView>
   );
 };
-
-const style = StyleSheet.create({
-  container: {
-    marginTop: StatusBar.currentHeight,
-  },
-});
 
 export default BasketScreen;
