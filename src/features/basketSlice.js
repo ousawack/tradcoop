@@ -5,8 +5,7 @@ const initialState = {
 };
 
 export const basketSlice = createSlice({
-  name: "counter",
-
+  name: "basket",
   initialState,
   reducers: {
     addToBasket: (state, action) => {
@@ -14,14 +13,14 @@ export const basketSlice = createSlice({
     },
     removeFromBasket: (state, action) => {
       const index = state.items.findIndex(
-        (item) => item.id == action.payload.id
+        (item) => item.id === action.payload.id
       );
       let newBasket = [...state.items];
       if (index >= 0) {
         newBasket.splice(index, 1);
       } else {
         console.warn(
-          `Can't remove product (id: ${action.payload.id} as its not in the basket!)`
+          `Can't remove product (id: ${action.payload.id}) as its not in basket!`
         );
       }
       state.items = newBasket;
@@ -32,9 +31,9 @@ export const basketSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
-export const selectedBasketItems = (state) => state.basket.items;
+export const selectBasketItems = (state) => state.basket.items;
 
-export const selectedBasketItemsWithId = (state, id) =>
+export const selectBasketItemsWithId = (state, id) =>
   state.basket.items.filter((item) => item.id === id);
 
 export const selectBasketTotal = (state) =>
