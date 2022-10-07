@@ -3,8 +3,9 @@ import React from "react";
 import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import sanityClient, { urlFor } from "../src/sanity";
-
+import Currency from "react-currency-formatter";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 /* Coop Product Card */
 
 const ProductCard = ({
@@ -23,7 +24,7 @@ const ProductCard = ({
     sanityClient
       .fetch(
         `
-            *[_type =="cooperative"]{
+            *[_type =="cooperative" && _id==id]{
               ...,
               product[]->{
                 ...,
@@ -31,13 +32,15 @@ const ProductCard = ({
                   name
               }
         }
-            }
-        `
+            }[0]
+        `,
+        { id }
       )
       .then((data) => {
         setCooperative(data);
       });
   }, []);
+
   const totalStars = 5;
   const gainStars = rating;
   return (
@@ -62,25 +65,19 @@ const ProductCard = ({
         }}
         className="h-36 w-64 rounded-sm"
       />
-      <View className="px-3 pb-3 space-y-1">
+      <View className="px-3 pb-2 space-y-1">
         <View className="flex-row justify-between pt-2 items-baseline">
           <Text
             style={{ fontFamily: "Poppins_700Bold" }}
-            className="text-base text-[#4E1703]"
+            className="text-sm text-[#4E1703]"
           >
             {title}
           </Text>
-          <Text
-            style={{ fontFamily: "Poppins_800ExtraBold" }}
-            className="text-xl text-[#7B420E]"
-          >
-            {price} DH
-          </Text>
         </View>
-        <View className="flex-row items-center space-x-1">
+        <View className="flex-row justify-between space-x-1">
           <View className="flex-row">
             {Array.from({ length: gainStars }, (x, i) => {
-              return <StarIcon key={i} name="star" size={20} color="#7B420E" />;
+              return <StarIcon key={i} name="star" size={18} color="#7B420E" />;
             })}
 
             {Array.from({ length: totalStars - gainStars }, (x, i) => {
@@ -88,13 +85,19 @@ const ProductCard = ({
                 <StarIcon
                   key={i}
                   name="star-border"
-                  size={20}
+                  size={18}
                   color="#7B420E"
                   opacity={0.3}
                 />
               );
             })}
           </View>
+          <Text
+            style={{ fontFamily: "Poppins_800ExtraBold" }}
+            className="text-base text-[#7B420E]"
+          >
+            <Currency quantity={price} currency="MAD" />
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
