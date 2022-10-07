@@ -70,7 +70,7 @@ export default function ({ navigation }) {
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            className="flex-1 bg-white rounded-lg p-2 "
+            className="flex-1 bg-white rounded-lg p-2"
             placeholder="Enter your email"
             value={email}
             autoCapitalize="none"
@@ -89,7 +89,7 @@ export default function ({ navigation }) {
           </Text>
           <TextInput
             style={{ fontFamily: "Poppins_500Medium" }}
-            className="flex-1 bg-white rounded-lg p-2 "
+            className="flex-1 bg-white rounded-lg p-2"
             placeholder="Enter your password"
             value={password}
             autoCapitalize="none"
