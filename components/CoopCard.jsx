@@ -38,17 +38,17 @@ const CoopCard = ({
         }}
         className="h-24 w-48 rounded-sm self-center object-cover"
       />
-      <View className="px-3 pb-3 space-y-1">
+      <View className="px-3 pb-4 space-y-3">
         <Text
           style={{ fontFamily: "Poppins_700Bold" }}
-          className="text-sm pt-2 text-[#4E1703]"
+          className="text-sm pt-3 -mb-1 text-[#4E1703]"
         >
           {title}
         </Text>
         <View className="flex-row items-center space-x-1">
           <View className="flex-row">
             {Array.from({ length: gainStars }, (x, i) => {
-              return <StarIcon key={i} name="star" size={20} color="#7B420E" />;
+              return <StarIcon key={i} name="star" size={18} color="#7B420E" />;
             })}
 
             {Array.from({ length: totalStars - gainStars }, (x, i) => {
@@ -56,7 +56,7 @@ const CoopCard = ({
                 <StarIcon
                   key={i}
                   name="star-border"
-                  size={20}
+                  size={18}
                   color="#7B420E"
                   opacity={0.3}
                 />
@@ -64,13 +64,13 @@ const CoopCard = ({
             })}
           </View>
         </View>
-        <View className="flex-row items-center space-x-1">
-          <MapPinIcon color="#7B420E" opacity={0.4} size={22} />
+        <View className="flex-row space-x-1">
+          <MapPinIcon color="#7B420E" opacity={0.4} size={15} />
           <Text
             style={{ fontFamily: "Poppins_600SemiBold" }}
             className="text-xs text-[#7B420E] "
           >
-            Location : {address}
+            {address}
           </Text>
         </View>
       </View>
