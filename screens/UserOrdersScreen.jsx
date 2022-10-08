@@ -62,7 +62,7 @@ const UserOrdersScreen = () => {
                   className="rounded-lg"
                 />
                 <View className="space-y-[5]">
-                  <View className="w-4">
+                  <View className="w-40">
                     <Text
                       style={{ fontFamily: "Poppins_600SemiBold" }}
                       className="text-base text-[#4E1703] -mt-[3]"
@@ -85,7 +85,7 @@ const UserOrdersScreen = () => {
                 </View>
               </View>
               <TouchableOpacity
-                onPress={() => dispatch(removeFromBasket({ key: key }))}
+                onPress={() => dispatch(removeFromBasket({ id: key }))}
               >
                 <XMarkIcon size={25} color="#4E1703" />
               </TouchableOpacity>
