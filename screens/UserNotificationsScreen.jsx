@@ -6,9 +6,25 @@ import ToggleSwitch from "toggle-switch-react-native";
 
 const UserNotificationsScreen = () => {
   const navigation = useNavigation();
-  const [notifications, setNotifications] = useState(false);
-  const handleNotifications = () => {
-    setNotifications((s) => !s);
+  const [notification1, setNotification1] = useState(false);
+  const handleNotification1 = () => {
+    setNotification1((s) => !s);
+  };
+  const [notification2, setNotification2] = useState(false);
+  const handleNotification2 = () => {
+    setNotification2((s) => !s);
+  };
+  const [notification3, setNotification3] = useState(false);
+  const handleNotification3 = () => {
+    setNotification3((s) => !s);
+  };
+  const [notification4, setNotification4] = useState(false);
+  const handleNotification4 = () => {
+    setNotification4((s) => !s);
+  };
+  const [notification5, setNotification5] = useState(false);
+  const handleNotification5 = () => {
+    setNotification5((s) => !s);
   };
 
   return (
@@ -43,11 +59,11 @@ const UserNotificationsScreen = () => {
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notifications}
+              isOn={notification1}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotifications}
+              onToggle={handleNotification1}
             />
           </View>
         </View>
@@ -68,11 +84,11 @@ const UserNotificationsScreen = () => {
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notifications}
+              isOn={notification2}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotifications}
+              onToggle={handleNotification2}
             />
           </View>
         </View>
@@ -93,11 +109,11 @@ const UserNotificationsScreen = () => {
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notifications}
+              isOn={notification3}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotifications}
+              onToggle={handleNotification3}
             />
           </View>
         </View>
@@ -118,11 +134,11 @@ const UserNotificationsScreen = () => {
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notifications}
+              isOn={notification4}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotifications}
+              onToggle={handleNotification4}
             />
           </View>
         </View>
@@ -143,11 +159,11 @@ const UserNotificationsScreen = () => {
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notifications}
+              isOn={notification5}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotifications}
+              onToggle={handleNotification5}
             />
           </View>
         </View>
