@@ -5,15 +5,15 @@ import { ArrowRightIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import sanityClient, { urlFor } from "../src/sanity";
 
-const Categories = ({ title }) => {
+const Categories = ({ imgUrl, title }) => {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
     sanityClient
       .fetch(
         `
-      *[_type=="category"]
-    `
+        *[_type =="category"]
+        `
       )
       .then((data) => {
         setCategories(data);
@@ -47,6 +47,7 @@ const Categories = ({ title }) => {
           return (
             <CategoryCard
               key={category._id}
+              id={category._id}
               imgUrl={urlFor(category.image).url()}
               title={category.name}
             />

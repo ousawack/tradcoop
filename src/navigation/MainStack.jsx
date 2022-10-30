@@ -17,6 +17,12 @@ import ProductListScreen from "../../screens/ProductListScreen";
 import ProductDetailsScreen from "../../screens/ProductDetailsScreen";
 import UserNotificationsScreen from "../../screens/UserNotificationsScreen";
 import UserProfileScreen from "../../screens/UserProfileScreen";
+import RugsBasedProductScreen from "../../screens/categories/RugsBasedProductScreen";
+import ArganOilBasedProductScreen from "../../screens/categories/ArganOilBasedProductScreen";
+import CouscousBasedProductScreen from "../../screens/categories/CoucousBasedProductScreen";
+import LeatherBasedProductScreen from "../../screens/categories/LeatherBasedProductScreen";
+import HoneyBasedProductScreen from "../../screens/categories/HoneyBasedProductScreen";
+import JewerlyBasedProductScreen from "../../screens/categories/JewerlyBasedProductScreen";
 
 import { Provider } from "react-redux";
 import { store } from "../store";
@@ -57,6 +63,30 @@ const Main = () => {
         <MainStack.Screen
           name="ProductDetails"
           component={ProductDetailsScreen}
+        />
+        <MainStack.Screen
+          name="RugsBasedProduct"
+          component={RugsBasedProductScreen}
+        />
+        <MainStack.Screen
+          name="ArganOilBasedProduct"
+          component={ArganOilBasedProductScreen}
+        />
+        <MainStack.Screen
+          name="CouscousBasedProduct"
+          component={CouscousBasedProductScreen}
+        />
+        <MainStack.Screen
+          name="LeatherBasedProduct"
+          component={LeatherBasedProductScreen}
+        />
+        <MainStack.Screen
+          name="HoneyBasedProduct"
+          component={HoneyBasedProductScreen}
+        />
+        <MainStack.Screen
+          name="JewerlyBasedProduct"
+          component={JewerlyBasedProductScreen}
         />
       </MainStack.Navigator>
     </Provider>
