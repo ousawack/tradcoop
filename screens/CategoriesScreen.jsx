@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CategoryListCard from "../components/CategoryListCard";
 import sanityClient, { urlFor } from "../src/sanity";
 
-const CategoriesScreen = ({ title }) => {
+const CategoriesScreen = () => {
   const [categories, setCategories] = useState();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const CategoriesScreen = ({ title }) => {
           return (
             <CategoryListCard
               key={category._id}
+              id={category._id}
               imgUrl={urlFor(category.image).url()}
               title={category.name}
             />

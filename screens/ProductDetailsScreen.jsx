@@ -116,7 +116,7 @@ const ProductDetailsScreen = () => {
             </View>
           </View>
           <View
-            className="mt-4 pb-20"
+            className="mt-4 pb-24"
             style={[{ flexDirection: "row", alignItems: "center" }]}
           >
             <View style={[{ flex: 1, flexDirection: "row" }]}>
@@ -149,12 +149,7 @@ const ProductDetailsScreen = () => {
                 </Text>
 
                 <TouchableOpacity onPress={addItemToBasket}>
-                  <PlusCircleIcon
-                    fill="#4E1703"
-                    color="white"
-                    size={40}
-                    padingright
-                  />
+                  <PlusCircleIcon fill="#4E1703" color="white" size={40} />
                 </TouchableOpacity>
               </View>
             </View>

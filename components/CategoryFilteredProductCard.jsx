@@ -6,9 +6,10 @@ import sanityClient, { urlFor } from "../src/sanity";
 import Currency from "react-currency-formatter";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { setCategory } from "../src/features/categorySlice";
 /* Coop Product Card */
 
-const ProductCard = ({
+const CategoryFilteredProductCard = ({
   id,
   imgUrl,
   title,
@@ -19,28 +20,6 @@ const ProductCard = ({
   description,
 }) => {
   const navigation = useNavigation();
-  const [Cooperative, setCooperative] = useState([]);
-
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `
-            *[_type =="cooperative" && _id==id]{
-              ...,
-              product[]->{
-                ...,
-                type-> {
-                  name
-              }
-        }
-            }[0]
-        `,
-        { id }
-      )
-      .then((data) => {
-        setCooperative(data);
-      });
-  }, []);
 
   const totalStars = 5;
   const gainStars = rating;
@@ -59,13 +38,13 @@ const ProductCard = ({
           price,
         })
       }
-      className="bg-[#f0e9dc] mx-3 shadow-md shadow-amber-800 rounded-lg"
+      className="bg-[#f0e9dc] mx-3 my-3 shadow-md shadow-amber-800 rounded-lg"
     >
       <Image
         source={{
           uri: urlFor(imgUrl).url(),
         }}
-        className="h-36 w-64 rounded-sm"
+        className="h-36 rounded-sm"
       />
       <View className="px-3 pb-2 space-y-1">
         <View className="flex-row justify-between pt-2 items-baseline">
@@ -106,4 +85,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default CategoryFilteredProductCard;

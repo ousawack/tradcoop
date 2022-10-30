@@ -24,7 +24,7 @@ const ProductListScreen = () => {
   const [catergoryIndex, setCategoryIndex] = React.useState(0);
 
   const categories = ["ALL", "POTTERY", "ORGANIC", "DECORATION", "SYNTHETIC"];
-  const [Products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     sanityClient
@@ -39,72 +39,71 @@ const ProductListScreen = () => {
         setProducts(data);
       });
   }, []);
-  const CategoryListCard = () => {
-    return (
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        className="flex-row mb-3 space-x-6 mx-4 content-between"
-        // contentContainerStyle={{ justifyContent: "space-between" }}
-        style={style.categoryContainer}
-      >
-        {categories.map((item, index) => (
-          <TouchableOpacity
-            key={index}
-            activeOpacity={0.8}
-            onPress={() => setCategoryIndex(index)}
-          >
-            <Text
-              style={[
-                style.categoryText,
-                catergoryIndex === index && style.categoryTextSelected,
-              ]}
-            >
-              {item}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    );
-  };
+  // const CategoryListCard = () => {
+  //   return (
+  //     <ScrollView
+  //       horizontal
+  //       showsHorizontalScrollIndicator={false}
+  //       className="flex-row mb-3 space-x-6 mx-4 content-between"
+  //       // contentContainerStyle={{ justifyContent: "space-between" }}
+  //       style={style.categoryContainer}
+  //     >
+  //       {categories.map((item, index) => (
+  //         <TouchableOpacity
+  //           key={index}
+  //           activeOpacity={0.8}
+  //           onPress={() => setCategoryIndex(index)}
+  //         >
+  //           <Text
+  //             style={[
+  //               style.categoryText,
+  //               catergoryIndex === index && style.categoryTextSelected,
+  //             ]}
+  //           >
+  //             {item}
+  //           </Text>
+  //         </TouchableOpacity>
+  //       ))}
+  //     </ScrollView>
+  //   );
+  // };
   return (
-    <View className="bg-[#EFDEBE] pt-8 flex-1">
-      <SafeAreaView>
-        {/* Header */}
-        <View className="flex-row items-center space-x-2 mx-4">
-          <View className="flex-row flex-1 p-3 my-6 space-x-2  bg-white border-black mt-2 rounded-lg ">
-            <MagnifyingGlassIcon color="gray" size={20} />
-            <TextInput
-              placeholder="coop list "
-              keyboardType="default"
-              className="flex-1"
+    <View className="bg-[#EFDEBE] flex-1">
+      {/* Header */}
+      <View className="flex-row items-center my-4 space-x-2 mx-4">
+        <View className="flex-row flex-1 p-3 pb-2 space-x-2 bg-white border border-[#7B420E] mt-2 rounded-lg ">
+          <MagnifyingGlassIcon color="#7B420E" size={20} />
+          <TextInput
+            style={{ fontFamily: "Poppins_600SemiBold" }}
+            placeholder="Search for rugs, clothing..."
+            keyboardType="default"
+            className="flex-1 text-[#7B420E]"
+          />
+        </View>
+      </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          marginTop: 10,
+          paddingBottom: 20,
+        }}
+      >
+        {/* <CategoryListCard /> */}
+        {products?.map((product) => (
+          <View className="flex flex-row flex-wrap">
+            <ProductListCard
+              key={product._id}
+              id={product._id}
+              imgUrl={urlFor(product.image).url()}
+              title={product.name}
+              rating={product.rating}
+              price={product.price}
+              address={product.address}
+              description={product.short_description}
             />
           </View>
-        </View>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            marginTop: 10,
-            paddingBottom: 20,
-          }}
-        >
-          <CategoryListCard />
-          {Products?.map((product) => (
-            <View className="flex flex-row flex-wrap">
-              <ProductListCard
-                key={product.id}
-                id={product.id}
-                imgUrl={urlFor(product.image).url()}
-                title={product.name}
-                rating={product.rating}
-                price={product.price}
-                address={product.address}
-                description={product.short_description}
-              />
-            </View>
-          ))}
-        </ScrollView>
-      </SafeAreaView>
+        ))}
+      </ScrollView>
     </View>
   );
 };

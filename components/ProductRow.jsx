@@ -28,7 +28,9 @@ const ProductRow = ({ title, description }) => {
   return (
     <View>
       <View className="mx-2 my-3">
-        <TouchableOpacity onPress={() => navigation.navigate("ProductList")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ProductList", id)}
+        >
           <View className="flex-row items-center justify-between px-4">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
@@ -63,6 +65,7 @@ const ProductRow = ({ title, description }) => {
               id={product._id}
               imgUrl={urlFor(product.image).url()}
               title={product.name}
+              category={product.category}
               rating={product.rating}
               price={product.price}
               address={product.address}
