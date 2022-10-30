@@ -6,25 +6,25 @@ import ToggleSwitch from "toggle-switch-react-native";
 
 const UserNotificationsScreen = () => {
   const navigation = useNavigation();
-  const [notification1, setNotification1] = useState(false);
-  const handleNotification1 = () => {
-    setNotification1((s) => !s);
+  const [discountNotifications, setDiscountNotifications] = useState(false);
+  const handleDiscountNotifications = () => {
+    setDiscountNotifications((s) => !s);
   };
-  const [notification2, setNotification2] = useState(false);
-  const handleNotification2 = () => {
-    setNotification2((s) => !s);
+  const [newNotifications, setNewNotifications] = useState(false);
+  const handleNewNotifications = () => {
+    setNewNotifications((s) => !s);
   };
-  const [notification3, setNotification3] = useState(false);
-  const handleNotification3 = () => {
-    setNotification3((s) => !s);
+  const [exclusiveNotification, setExclusiveNotification] = useState(false);
+  const handleExclusiveNotification = () => {
+    setExclusiveNotification((s) => !s);
   };
-  const [notification4, setNotification4] = useState(false);
-  const handleNotification4 = () => {
-    setNotification4((s) => !s);
+  const [stockNotification, setStockNotification] = useState(false);
+  const handleStockNotification = () => {
+    setStockNotification((s) => !s);
   };
-  const [notification5, setNotification5] = useState(false);
-  const handleNotification5 = () => {
-    setNotification5((s) => !s);
+  const [orderNotification, setOrderNotification] = useState(false);
+  const handleOrderNotification = () => {
+    setOrderNotification((s) => !s);
   };
 
   return (
@@ -43,127 +43,130 @@ const UserNotificationsScreen = () => {
       </TouchableOpacity>
       <ScrollView className="m-10 pb-10 space-y-8">
         <View className="flex-row">
-          <View className="space-y-2 mr-8">
+          <View className="space-y-2 mr-6 w-52">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-xl text-[#4E1703]"
             >
-              Title
+              Discounts and sales
             </Text>
             <Text
               style={{ fontFamily: "Poppins_600SemiBold" }}
               className="text-sm text-[#4e170367]"
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Be first in line to nab the stuff you love for less.
             </Text>
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notification1}
+              isOn={discountNotifications}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotification1}
+              onToggle={handleDiscountNotifications}
             />
           </View>
         </View>
         <View className="flex-row">
-          <View className="space-y-2 mr-8">
+          <View className="space-y-2 mr-6 w-52">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-xl text-[#4E1703]"
             >
-              Title
+              New stuff
             </Text>
             <Text
               style={{ fontFamily: "Poppins_600SemiBold" }}
               className="text-sm text-[#4e170367]"
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              New drops, news and cultural informations; hear it first,
+              experience it first.
             </Text>
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notification2}
+              isOn={newNotifications}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotification2}
+              onToggle={handleNewNotifications}
             />
           </View>
         </View>
         <View className="flex-row">
-          <View className="space-y-2 mr-8">
+          <View className="space-y-2 mr-6 w-52">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-xl text-[#4E1703]"
             >
-              Title
+              Your exclusives
             </Text>
             <Text
               style={{ fontFamily: "Poppins_600SemiBold" }}
               className="text-sm text-[#4e170367]"
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Enjoy a birthday treat, as well as tailord rewards and account
+              updates.
             </Text>
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notification3}
+              isOn={exclusiveNotification}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotification3}
+              onToggle={handleExclusiveNotification}
             />
           </View>
         </View>
         <View className="flex-row">
-          <View className="space-y-2 mr-8">
+          <View className="space-y-2 mr-6 w-52">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-xl text-[#4E1703]"
             >
-              Title
+              Stock notifications
             </Text>
             <Text
               style={{ fontFamily: "Poppins_600SemiBold" }}
               className="text-sm text-[#4e170367]"
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              If that product you're into comes back in stock, get a heads-up so
+              you can add to bag pronto.
             </Text>
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notification4}
+              isOn={stockNotification}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotification4}
+              onToggle={handleStockNotification}
             />
           </View>
         </View>
         <View className="flex-row">
-          <View className="space-y-2 mr-8">
+          <View className="space-y-2 mr-6 w-52">
             <Text
               style={{ fontFamily: "Poppins_700Bold" }}
               className="text-xl text-[#4E1703]"
             >
-              Title
+              Order & return updates
             </Text>
             <Text
               style={{ fontFamily: "Poppins_600SemiBold" }}
               className="text-sm text-[#4e170367]"
             >
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              We'll keep you updated on the status of your order.
             </Text>
           </View>
           <View className="justify-center">
             <ToggleSwitch
-              isOn={notification5}
+              isOn={orderNotification}
               onColor="#4e1703b7"
               offColor="#4e170352"
               size="medium"
-              onToggle={handleNotification5}
+              onToggle={handleOrderNotification}
             />
           </View>
         </View>
