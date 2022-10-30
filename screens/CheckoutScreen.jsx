@@ -89,14 +89,14 @@ const CheckoutScreen = () => {
         </View> */}
         <View className="border border-[#C3700D] rounded-lg p-4 divide-y divide-[#C3700D]">
           {Object.entries(groupItemsInBasket).map(([key, items]) => (
-            <View key={key} className="flex-row justify-between pb-4">
+            <View key={key} className="flex-row justify-between py-4">
               <View className="flex-row space-x-4">
                 <Image
                   source={{ uri: urlFor(items[0]?.imgUrl).url() }}
                   style={{ width: 72, height: 72 }}
                   className="rounded-lg"
                 />
-                <View className="space-y-[5]">
+                <View className="space-y-[5] w-48">
                   <Text
                     style={{ fontFamily: "Poppins_600SemiBold" }}
                     className="text-base text-[#4E1703] -mt-[3]"
@@ -118,7 +118,7 @@ const CheckoutScreen = () => {
                 </View>
               </View>
               <TouchableOpacity
-                onPress={() => dispatch(removeFromBasket({ key: key }))}
+                onPress={() => dispatch(removeFromBasket({ id: key }))}
               >
                 <XMarkIcon size={25} color="#4E1703" />
               </TouchableOpacity>
