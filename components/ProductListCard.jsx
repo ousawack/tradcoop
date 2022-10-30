@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { MapPinIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import Currency from "react-currency-formatter";
 
 /* Coop Product Card */
 
@@ -35,7 +36,7 @@ const ProductCard = ({
         source={{
           uri: imgUrl,
         }}
-        className="h-20 w-40 rounded-sm"
+        className="h-24 w-full rounded-sm"
       />
       <View className="px-3 pb-3 space-y-1">
         <View className="justify-between pt-2 items-baseline">
@@ -49,7 +50,7 @@ const ProductCard = ({
             style={{ fontFamily: "Poppins_800ExtraBold" }}
             className="text-lg text-[#7B420E] self-center "
           >
-            {price} DH
+            <Currency quantity={price} currency="MAD" />
           </Text>
         </View>
       </View>
